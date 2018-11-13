@@ -1,0 +1,29 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/Shop_Front/Shop/dist
+/Shop_Front/Shop/tmp
+/Shop_Front/Shop/out-tsc
+
+# dependencies
+/Shop_Front/Shop/node_modules
+/Shop_Front/Shop/node_modules/*
+
+# IDEs and editors
+/Shop_Front/Shop/.idea
+
+# IDE - VSCode
+
+# misc
+/Shop_Front/Shop/.sass-cache
+/Shop_Front/Shop/connect.lock
+/Shop_Front/Shop/coverage
+/Shop_Front/Shop/libpeerconnection.log
+/Shop_Front/Shop/npm-debug.log
+/Shop_Front/Shop/yarn-error.log
+/Shop_Front/Shop/testem.log
+/Shop_Front/Shop/typings
+
+# Shop_Back
+bin
+obj

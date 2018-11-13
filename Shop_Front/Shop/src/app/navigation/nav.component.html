@@ -1,0 +1,49 @@
+<div class="backdrop" (click)="backdropClickHandler()"></div>
+<header class="main-header">
+  <button id="side-menu-toggle" (click)="menuToggleClickHandler()">Menu</button>
+  <nav class="main-header__nav">
+    <ul class="main-header__item-list">
+      <li class="main-header__item">
+        <a [routerLink]="['shop']" routerLinkActive="active">Shop</a>
+      </li>
+      <li class="main-header__item">
+        <a href="#" class="_active">Products</a>
+      </li>
+      <li class="main-header__item">
+        <a href="#" class="_active">Cart</a>
+      </li>
+      <li class="main-header__item">
+        <a href="#" class="_active">Orders</a>
+      </li>
+      <li class="main-header__item">
+        <a href="#" class="_active">Add Product</a>
+      </li>
+      <li class="main-header__item">
+        <a [routerLink]="['admin/products']" routerLinkActive="active">Admin Products</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="mobile-nav">
+  <ul class="mobile-nav__item-list">
+    <li class="mobile-nav__item">
+      <a [routerLink]="['shop']" routerLinkActive="active">Shop</a>
+    </li>
+    <li class="mobile-nav__item">
+      <a href="#" class="_active">Products</a>
+    </li>
+    <li class="mobile-nav__item">
+      <a href="#" class="_active">Cart</a>
+    </li>
+    <li class="mobile-nav__item">
+      <a href="#" class="_active">Orders</a>
+    </li>
+    <li class="mobile-nav__item">
+      <a href="#" class="_active">Add Product</a>
+    </li>
+    <li class="mobile-nav__item">
+      <a [routerLink]="['admin/products']" routerLinkActive="active">Admin Products</a>
+    </li>
+  </ul>
+</nav>
