@@ -14,7 +14,6 @@ using Microsoft.Extensions.Options;
 using Shop_Back.Models;
 using Shop_Back.Data;
 using Shop_Back.Repository;
-using Shop_Back.Properties;
 
 namespace Shop_Back
 {
@@ -35,6 +34,7 @@ namespace Shop_Back
                 });
 
       services.AddScoped<IAdminRepository, AdminRepository>();
+      services.AddScoped<IShopRepository, ShopRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +50,7 @@ namespace Shop_Back
       }
 
       app.UseHttpsRedirection();
+      app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
       app.UseMvc();
     }
   }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-navigation',
@@ -10,6 +11,7 @@ export class NavComponent implements OnInit {
   sideDrawer;
   menuToggle;
 
+  constructor() {}
 
   ngOnInit() {
     this.backdrop = document.querySelector('.backdrop');

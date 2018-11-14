@@ -25,11 +25,20 @@ namespace Shop_Back.Controllers
         }
 
         // GET api/admin/products/:id
+        [Route("api/admin/user/products")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById(int id)
         {
             var product = await _repo.GetProduct(id);
             return Ok(product);
+        }
+
+        // GET api/admin/products/user/:id
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetProductByUserId(int id)
+        {
+            var products = await _repo.GetProducts(id);
+            return Ok(products);
         }
 
         // PUT api/admin/products/:id

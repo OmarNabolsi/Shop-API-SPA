@@ -12,7 +12,7 @@ namespace Shop_Back.Repository
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
-        User GetUserByName(string name);
+        Task<User> GetUserByName(string name);
         Task<IEnumerable<Product>> GetProducts(int userId);
         Task<Product> GetProduct(int id);
     }

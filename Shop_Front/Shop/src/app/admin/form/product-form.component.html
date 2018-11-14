@@ -1,0 +1,23 @@
+<form class="product-form" #editForm="ngForm" id="editForm" (ngSubmit)="saveProduct()">
+  <div class="form-control">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" [(ngModel)]="product.title">
+  </div>
+  <div class="form-control">
+      <label for="imageUrl">Image URL</label>
+      <input type="text" name="imageUrl" id="imageUrl" [(ngModel)]="product.imageUrl">
+  </div>
+  <div class="form-control">
+      <label for="price">Price</label>
+      <input type="number" name="price" id="price" step="0.01" [(ngModel)]="product.price">
+  </div>
+  <div class="form-control">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" rows="5" [(ngModel)]="product.description"></textarea>
+  </div>
+
+  <input type="hidden" *ngIf="product.id !== ''" [value]="product.id" name="productId">
+
+  <button form="editForm" class="btn" type="submit" *ngIf="product.id !== ''">Update Product</button>
+  <button form="editForm" class="btn" type="submit" *ngIf="product.id === ''">Add Product</button>
+</form>

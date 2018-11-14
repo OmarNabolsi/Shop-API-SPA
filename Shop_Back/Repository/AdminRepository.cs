@@ -40,9 +40,9 @@ namespace Shop_Back.Repository
       return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
     }
 
-    public User GetUserByName(string name)
+    public async Task<User> GetUserByName(string name)
     {
-      return _context.Users.Where(u => u.Name == name).FirstOrDefault();
+      return await _context.Users.Include(u => u.Products).Where(u => u.Name == name).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<User>> GetUsers()

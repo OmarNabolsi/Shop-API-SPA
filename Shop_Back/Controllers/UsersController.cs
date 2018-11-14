@@ -22,5 +22,12 @@ namespace Shop_Back.Controllers
         var users = await _repo.GetUsers();
         return Ok(users);
     }
+
+    [HttpGet("{name}")]
+    public async Task<IActionResult> GetUserByName(string name) 
+    {
+        var user = await _repo.GetUserByName(name);
+        return Ok(user);
+    }
   }
 }

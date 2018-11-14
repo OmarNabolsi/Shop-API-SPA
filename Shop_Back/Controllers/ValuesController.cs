@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Shop_Back.Properties;
 using Shop_Back.Repository;
 
 namespace Shop_Back.Controllers
@@ -21,9 +20,9 @@ namespace Shop_Back.Controllers
     [HttpGet]
     public ActionResult<IEnumerable<string>> Get()
     {
-      var g = new Global(_repo);
-      var userName = Global.UserId.Name;
-      return new string[] { "value1", "value2", userName };
+      // var g = new Global(_repo);
+      // var userName = Global.UserId.Name;
+      return new string[] { "value1", "value2" };
     }
 
     // GET api/values/5
