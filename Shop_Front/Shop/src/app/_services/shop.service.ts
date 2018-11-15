@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { CartItem } from '../models/CartItem';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,48 @@ export class ShopService {
           userId: data.userId
         };
         return product;
+      })
+    );
+  }
+
+  addCartItem(cartId, productId) {
+    return this.http.post(this.baseUrl + 'shop/cart/' + cartId, { productId: productId });
+  }
+
+  removeCartItem(cartItemId) {
+    return this.http.delete(this.baseUrl + 'shop/cartItem/' + cartItemId);
+  }
+
+  getCartItems(userId) {
+    return this.http.get(this.baseUrl + 'shop/cart/' + userId).pipe(
+      map((data: any) => {
+        const cartItems: CartItem[] = [];
+        for (const item of data.cartItems) {
+          const cItem: CartItem = {
+            id: item.id,
+            quantity: item.quantity,
+            cartId: item.cartId,
+            productId: item.productId
+          };
+          cartItems.push(cItem);
+        }
+        return cartItems;
+      }),
+      map(cartItems => {
+        for (const item of cartItems) {
+          this.http.get(this.baseUrl + 'shop/product/' + item.productId)
+            .subscribe((productData: any) => {
+              item.product = {
+                id: productData.id,
+                title: productData.title,
+                imageUrl: productData.imageUrl,
+                price: productData.price,
+                description: productData.description,
+                userId: productData.userId
+              };
+            }, err => console.log(err));
+        }
+        return cartItems;
       })
     );
   }

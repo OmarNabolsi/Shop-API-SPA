@@ -16,7 +16,7 @@
       </div>
       <div class="card__actions">
         <a [routerLink]="['details/', product.id]" class="btn">Details</a>
-        <a href="" class="btn">Add to Cart</a>
+        <a (click)="addToCart(product.id)" class="btn">Add to Cart</a>
       </div>
     </article>
   </div>

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Shop_Back.Data;
@@ -13,14 +14,19 @@ namespace Shop_Back.Repository
     {
         _context = context;
     }
-    public void Add<T>(T enttiy) where T : class
+    public void Add<T>(T entity) where T : class
     {
-        throw new System.NotImplementedException();
+        _context.Add(entity);
     }
 
-    public void Delete<T>(T enttiy) where T : class
+    public void Delete<T>(T entity) where T : class
     {
-        throw new System.NotImplementedException();
+        _context.Remove(entity);
+    }
+
+    public async Task<Cart> GetCartByUserId(int userId)
+    {
+      return await _context.Carts.Include(c => c.CartItems).Where(c => c.UserId == userId).SingleOrDefaultAsync();
     }
 
     public async Task<Product> GetProductById(int id)
@@ -32,5 +38,20 @@ namespace Shop_Back.Repository
     {
         return await _context.Products.ToListAsync();
     }
+
+    public async Task<CartItem> GetCartItem(int cartItemId)
+    {
+        return await _context.CartItems.Include(ci => ci.Product).SingleOrDefaultAsync(ci => ci.Id == cartItemId);
+    }
+    public void UpdateCartItem(CartItem cartItem)
+    {
+      _context.CartItems.Update(cartItem);
+    }
+
+    public async Task<bool> SaveAll()
+    {
+      return await _context.SaveChangesAsync() > 0;
+    }
+
   }
 }

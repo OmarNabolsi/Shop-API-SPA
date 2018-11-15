@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Shop_Back.Models
@@ -19,5 +20,6 @@ namespace Shop_Back.Models
 
         public int UserId { get; set; }
         public User User { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
     }
 }

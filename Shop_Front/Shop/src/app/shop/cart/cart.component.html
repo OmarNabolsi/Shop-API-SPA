@@ -1,1 +1,16 @@
-<p>Shopping Cart!</p>
+<main>
+  <div *ngIf="cartItems.length > 0">
+    <ul class="cart__item-list">
+      <li *ngFor="let cartItem of cartItems" class="cart__item">
+        <h1>{{ cartItem.product?.title }}</h1>
+        <h2>Quantity: {{ cartItem.quantity }}</h2>
+        <a (click)="removeCartItem(cartItem.id)" class="btn danger">Remove</a>
+      </li>
+    </ul>
+    <hr>
+    <div class="centered">
+      <a href="" class="btn">Order Now!</a>
+    </div>
+  </div>
+  <p *ngIf="cartItems.length === 0">No Products in the Cart!</p>
+</main>

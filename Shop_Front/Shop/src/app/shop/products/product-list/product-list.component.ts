@@ -1,6 +1,7 @@
 import { ShopService } from '../../../_services/shop.service';
 import { Product } from '../../../models/Product';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private shopService: ShopService) {}
+  constructor(private shopService: ShopService,
+    private router: Router) {}
 
   ngOnInit() {
     this.getProducts();
@@ -23,5 +25,12 @@ export class ProductListComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  addToCart(id) {
+    this.shopService.addCartItem('1', id).subscribe(result => {
+      // this.router.navigate(['shop-products']);
+      alert('Product is added to the cart.');
+    }, err => console.log(err));
   }
 }

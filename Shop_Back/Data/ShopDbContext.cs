@@ -8,19 +8,14 @@ namespace Shop_Back.Data
     public ShopDbContext(DbContextOptions<ShopDbContext> options) : base(options) { }
     public DbSet<Product> Products { get; set; }
     public DbSet<User> Users { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder builder)
+    public DbSet<Cart> Carts { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        builder.Entity<Product>()
-            .HasKey(p => p.Id);
-        builder.Entity<Product>()
-            .Property(p => p.CreatedOn)
-            .ValueGeneratedOnAdd();
-        builder.Entity<Product>()
-            .Property(p => p.LastUpdated)
-            .ValueGeneratedOnUpdate();
-        // builder.Entity<Product>().Ignore(p => p.Id);
+      modelBuilder.Entity<Product>()
+       .HasMany(p => p.CartItems)
+       .WithOne(ci => ci.Product)
+       .OnDelete(DeleteBehavior.Restrict);
     }
-    
   }
 }

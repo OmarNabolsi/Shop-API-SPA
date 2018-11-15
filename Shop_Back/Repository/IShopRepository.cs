@@ -6,10 +6,14 @@ namespace Shop_Back.Repository
 {
     public interface IShopRepository
     {
-         void Add<T>(T enttiy) where T : class;
-         void Delete<T>(T enttiy) where T : class;
+        void Add<T>(T entity) where T : class;
+        void Delete<T>(T entity) where T : class;
+        void UpdateCartItem(CartItem cartItem);
+        Task<IEnumerable<Product>> GetProducts();
+        Task<Product> GetProductById(int id);
 
-         Task<IEnumerable<Product>> GetProducts();
-         Task<Product> GetProductById(int id);
+        Task<CartItem> GetCartItem(int cartItemId);
+        Task<Cart> GetCartByUserId(int userId);
+        Task<bool> SaveAll();
     }
 }
