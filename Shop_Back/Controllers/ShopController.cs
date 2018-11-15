@@ -60,7 +60,7 @@ namespace Shop_Back.Controllers
         _repo.Add(cartItemToAdd);
       }
 
-      var result = await _repo.SaveAll();
+      var result = await _repo.SaveAllAsync();
 
       return Ok(result);
     }
@@ -81,9 +81,37 @@ namespace Shop_Back.Controllers
         return NotFound();
       }
       _repo.Delete(cartItem);
-      var result = await _repo.SaveAll();
+      var result = await _repo.SaveAllAsync();
 
       return Ok(result);
+    }
+
+    [HttpPost("order")]
+    public async Task<IActionResult> PostOrder(Cart cart)
+    {
+      OrderItem[] orderItems = new OrderItem[cart.CartItems.Count];
+      int i = 0;
+
+      foreach (var item in cart.CartItems)
+      {
+        var orderItem = new OrderItem{
+          ProductId = item.ProductId,
+          Quantity = item.Quantity
+        };
+        _repo.Delete(item);
+        await _repo.SaveAllAsync();
+        orderItems[i] = orderItem;
+        i++;
+      }
+
+      var order = new Order{
+        UserId = cart.UserId,
+        OrderItems = orderItems
+      };
+
+      var dbOrder = await _repo.AddOrder(order);
+      
+      return Ok(dbOrder);
     }
   }
 }

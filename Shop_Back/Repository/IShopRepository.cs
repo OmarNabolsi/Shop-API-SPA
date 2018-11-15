@@ -14,6 +14,8 @@ namespace Shop_Back.Repository
 
         Task<CartItem> GetCartItem(int cartItemId);
         Task<Cart> GetCartByUserId(int userId);
-        Task<bool> SaveAll();
+
+        Task<Order> AddOrder(Order order);
+        Task<bool> SaveAllAsync();
     }
 }

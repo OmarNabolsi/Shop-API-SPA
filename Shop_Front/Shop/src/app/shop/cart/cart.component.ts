@@ -27,4 +27,15 @@ export class CartComponent implements OnInit {
       this.getCartItems();
     }, err => console.log(err));
   }
+
+  orderNow() {
+    const cart = {
+      userId: '1',
+      cartItems: this.cartItems
+    };
+    this.shopService.postOrder(cart).subscribe(order => {
+      this.getCartItems();
+      console.log(order);
+    }, err => console.log(err));
+  }
 }

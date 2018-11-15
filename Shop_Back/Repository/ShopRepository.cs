@@ -48,10 +48,22 @@ namespace Shop_Back.Repository
       _context.CartItems.Update(cartItem);
     }
 
-    public async Task<bool> SaveAll()
+    public async Task<bool> SaveAllAsync()
     {
       return await _context.SaveChangesAsync() > 0;
     }
 
+    public async Task<Order> AddOrder(Order order)
+    {
+        await _context.Orders.AddAsync(order);
+        
+        if (await _context.SaveChangesAsync() > 0)
+        {
+            return order;
+        }
+        return null;
+    }
+
+    
   }
 }

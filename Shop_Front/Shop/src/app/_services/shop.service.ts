@@ -90,4 +90,8 @@ export class ShopService {
       })
     );
   }
+
+  postOrder(cart) {
+    return this.http.post(this.baseUrl + 'shop/order', cart);
+  }
 }
